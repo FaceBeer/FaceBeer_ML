@@ -1,0 +1,11 @@
+FROM tensorflow/tensorflow:latest-gpu
+ARG PYTHON_VERSION=3.8
+ARG OPENCV_VERSION=4.7.0
+RUN apt update && apt install libopencv-dev python3-opencv -y
+RUN pip install matplotlib numpy pandas scipy scikit-learn
+RUN mkdir facebeer
+WORKDIR facebeer
+COPY . facebeer
+
+#ENTRYPOINT ["/bin/sh", "-c", "bash"]
+ENTRYPOINT ["python", "src/main.py"]
